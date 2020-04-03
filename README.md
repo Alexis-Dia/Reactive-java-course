@@ -1,5 +1,16 @@
 Reactive-java-course
 
-1. Example1 of code is got from github Oleg Dokuka rep - https://github.com/CollaborationInEncapsulation/reactive-hardcore
-   Video with explanations on youtube - https://www.youtube.com/watch?v=qmuNAWKNJWs
-2. Example2 is about back pressure.
+Oleh Dokuka - Reactive Hardcore: How to Build Your Publisher
+Rep - https://github.com/CollaborationInEncapsulation/reactive-hardcore
+Video with explanations on youtube - https://www.youtube.com/watch?v=qmuNAWKNJWs
+
+Oleh tries to implement spec of Rx-programming example-by-example.
+1. Example1 is about ordering of calling methods in 
+   Here Oleh says about right order: 
+       - in Publisher create Subscription
+       - send to Subscriber -> Subscription: subscriber.onSubscribe(subscription);
+       - send data: subscriber.onNext(data);
+       - says to Subscriber that is finish: subscriber.onComplete();
+2. Example2 (10:20) is about back pressure (backpressure). Backpressure - it's control of thread of data. Problem of 
+    example1 is that data was came when we even didn't ask.
+3. Example3 (12:30) is about checking null.
