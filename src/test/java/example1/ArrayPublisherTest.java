@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import static example1.ArrayPublisher.generate;
+import static example2.ArrayPublisher.generate;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -63,7 +63,7 @@ public class ArrayPublisherTest {
         ArrayList<Long> collected = new ArrayList<>();
         long toRequest = 5L;
         Long[] array = generate(toRequest);
-        ArrayPublisher<Long> publisher = new ArrayPublisher<>(array);
+        example2.ArrayPublisher<Long> publisher = new example2.ArrayPublisher<>(array);
         Subscription[] subscription = new Subscription[1];
 
         publisher.subscribe(new Subscriber<Long>() {
@@ -87,7 +87,6 @@ public class ArrayPublisherTest {
                 latch.countDown();
             }
         });
-
 
         Assertions.assertThat(collected).isEmpty();
 
