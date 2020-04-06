@@ -18,4 +18,4 @@ Oleh tries to implement spec of Rx-programming example-by-example.
 5. Example5 is about subscription canceling.
     19:20 is about reactive-streams-tck. We have to add dependence and inherit from PublisherVerification-class. 
     This lib reactive-streams-tck uses for checking all 41 requirements of reactive-specification.
-6. Example6 (24:20) is about multithreading.    
+6. Example6 (24:20 - 36:50) is about multithreading.    
