@@ -15,3 +15,6 @@ Oleh tries to implement spec of Rx-programming example-by-example.
     example1 is that data was came when we even didn't ask.
 3. Example3 (12:30) is about checking null.
 4. Example4 (13:50) is about recursion. Oleh uses pattern - work in progress.
+5. Example5 is about subscription canceling.
+    19:20 is about reactive-streams-tck. We have to add dependence and inherit from PublisherVerification-class. 
+    This lib reactive-streams-tck uses for checking all 41 requirements of reactive-specification.

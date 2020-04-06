@@ -2,8 +2,11 @@ package example1;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.reactivestreams.tck.PublisherVerification;
+import org.reactivestreams.tck.TestEnvironment;
 
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
@@ -16,7 +19,21 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 /**
  * @author Alexey Druzik on 4/3/2020
  */
-public class ArrayPublisherTest {
+public class ArrayPublisherTest extends PublisherVerification<Long> {
+
+    public ArrayPublisherTest() {
+        super(new TestEnvironment());
+    }
+
+    @Override
+    public Publisher<Long> createPublisher(long elements) {
+        return new ArrayPublisher<>(generate(elements));
+    }
+
+    @Override
+    public Publisher<Long> createFailedPublisher() {
+        return null;
+    }
 
     @Test
     public void signalsShouldBeEmittedInTheRightOrder() throws InterruptedException {
@@ -180,5 +197,42 @@ public class ArrayPublisherTest {
         latch.await(5, SECONDS);
 
         Assertions.assertThat(collected).containsExactly(array);
+    }
+
+    @Test
+    public void shouldBePossibleToCancelSubscription() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        ArrayList<Long> collected = new ArrayList<>();
+        long toRequest = 1000L;
+        Long[] array = generate(toRequest);
+        example5.ArrayPublisher<Long> publisher = new example5.ArrayPublisher<>(array);
+
+        publisher.subscribe(new Subscriber<Long>() {
+
+            @Override
+            public void onSubscribe(Subscription s) {
+                s.cancel();
+                s.request(toRequest);
+            }
+
+            @Override
+            public void onNext(Long aLong) {
+                collected.add(aLong);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                latch.countDown();
+            }
+        });
+
+        latch.await(1, SECONDS);
+
+        Assertions.assertThat(collected).isEmpty();
     }
 }
