@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static example2.ArrayPublisher.generate;
+import static java.util.concurrent.ForkJoinPool.commonPool;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -27,7 +28,7 @@ public class ArrayPublisherTest extends PublisherVerification<Long> {
 
     @Override
     public Publisher<Long> createPublisher(long elements) {
-        return new ArrayPublisher<>(generate(elements));
+        return new example5.ArrayPublisher<>(generate(elements));
     }
 
     @Override
@@ -234,5 +235,45 @@ public class ArrayPublisherTest extends PublisherVerification<Long> {
         latch.await(1, SECONDS);
 
         Assertions.assertThat(collected).isEmpty();
+    }
+
+    @Test
+    public void multithreadingTest() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        ArrayList<Long> collected = new ArrayList<>();
+        final int n = 5000;
+        Long[] array = generate(n);
+        example6.ArrayPublisher<Long> publisher = new example6.ArrayPublisher<>(array);
+
+        publisher.subscribe(new Subscriber<Long>() {
+            private Subscription s;
+
+            @Override
+            public void onSubscribe(Subscription s) {
+                this.s = s;
+                for (int i = 0; i < n; i++) {
+                    commonPool().execute(() -> s.request(1));
+                }
+            }
+
+            @Override
+            public void onNext(Long aLong) {
+                collected.add(aLong);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                latch.countDown();
+            }
+        });
+
+        latch.await(2, SECONDS);
+
+        Assertions.assertThat(collected).containsExactly(array);
     }
 }
