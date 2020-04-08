@@ -24,3 +24,4 @@ Networking in Java with NIO and Netty — Konstantin Slisenko
 1. Example11 is about simply ServerSocket server. For running use - telnet localhost 45000
 2. Example12 is about some fixes for ServerSocket using multithreading. Every time when each connection comes in we will
  start it in separate thread. For running use - telnet localhost 45000
+3. Example13 is about situation when LoadTestingClient opens 10000 connections.
