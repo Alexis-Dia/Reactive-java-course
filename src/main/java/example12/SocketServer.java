@@ -1,4 +1,4 @@
-package exaple11;
+package example12;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -18,8 +18,8 @@ public class SocketServer {
 
                 // Blocking call, never null
                 final Socket socket = serverSocket.accept();
-                handle(socket); // Handle in same thread
-//                new Thread(() -> handle(socket)).start(); // Handle in always new thread
+                //handle(socket); // Handle in same thread
+                new Thread(() -> handle(socket)).start(); // Handle in always new thread
 //                pool.submit(() -> handle(socket)); // Handle in thread pool
             }
         } finally {
