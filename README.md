@@ -25,4 +25,6 @@ Networking in Java with NIO and Netty — Konstantin Slisenko
 2. Example12 is about some fixes for ServerSocket using multithreading. Every time when each connection comes in we will
  start it in separate thread. For running use - telnet localhost 45000
 3. Example13 is about situation when LoadTestingClient opens 10000 connections.
-4. Example13 is about using ThreadPool on server side and LoadTestingClient again opens 10000 connections.
+4. Example13 is about using ThreadPool on server side and LoadTestingClient again opens 10000 connections. Using ExecutorService 
+and ThreadPool we restricted number of thread on 200 items. Minus of this decision is that if 201 clint connect we wont
+provide him a connection.  
