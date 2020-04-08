@@ -28,3 +28,4 @@ Networking in Java with NIO and Netty — Konstantin Slisenko
 4. Example13 is about using ThreadPool on server side and LoadTestingClient again opens 10000 connections. Using ExecutorService 
 and ThreadPool we restricted number of thread on 200 items. Minus of this decision is that if 201 clint connect we wont
 provide him a connection.  
+5. Example 15 is about NIO-server.
