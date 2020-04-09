@@ -30,3 +30,9 @@ and ThreadPool we restricted number of thread on 200 items. Minus of this decisi
 provide him a connection.  
 5. Example 15 is about NIO-server.
 6. Example 16 is about Netty-server.
+
+Rossen Stoyanchev - Servlet vs Reactive Stacks in Five Use Cases - 
+https://www.youtube.com/watch?time_continue=2947&v=_Orluu4VhmY&feature=emb_logo
+https://sysout.ru/servlet-vs-reactive-stack-5-primerov/
+https://github.com/rstoyanchev/demo-reactive-spring
+1. Example24 is about Data 'Ingestion with Back Pressure' (case 5).
