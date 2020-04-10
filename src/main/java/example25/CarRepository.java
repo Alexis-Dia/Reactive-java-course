@@ -1,4 +1,4 @@
-package example24;
+package example25;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.data.mongodb.repository.Tailable;

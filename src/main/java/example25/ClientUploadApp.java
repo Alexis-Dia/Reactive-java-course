@@ -1,4 +1,4 @@
-package example24;
+package example25;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

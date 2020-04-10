@@ -35,4 +35,5 @@ Rossen Stoyanchev - Servlet vs Reactive Stacks in Five Use Cases -
 https://www.youtube.com/watch?time_continue=2947&v=_Orluu4VhmY&feature=emb_logo
 https://sysout.ru/servlet-vs-reactive-stack-5-primerov/
 https://github.com/rstoyanchev/demo-reactive-spring
-1. Example24 is about Data 'Ingestion with Back Pressure' (case 5).
+1. Example23 is about working together reactor's micro-services and orchestrating by main CarApp (case 3).
+2. Example25 is about Data 'Ingestion with Back Pressure' (case 5).
